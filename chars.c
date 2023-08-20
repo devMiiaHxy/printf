@@ -9,19 +9,19 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		return (-1);
+		int cal = va_arg (my_chars, int);
+		write(-1, &cal, 0);
 	}
 
 	else
 	{
-
-		if (format[x] != '\0' && format[x] != '%')
+		if (format[x] != '%')
 		{
-			x++;
 			write (1, format, strlen(format));
+			x++;
 		}
 
-		if (format[x] != '\0' && format[x] == '%')
+		if (format[x] == '%')
 		{
 			if (format[x + 1] == 'c')
 			{
@@ -45,7 +45,9 @@ int _printf(const char *format, ...)
 				int val2 = va_arg (my_chars, int);
 				write (1, &val2, 1);
 			}
+		
 		}
+
 	}
 
 	va_end (my_chars);
