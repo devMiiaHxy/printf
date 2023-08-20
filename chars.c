@@ -3,41 +3,40 @@
 
 int _printf(const char *format, ...)
 {
+	int x = 0;
+	va_list my_chars;
+	va_start (my_chars, format);
 
 	if (format == NULL)
+	{
 		return (-1);
+	}
 
 	else
 	{
-		int x = 0;
-		int i = 0;
-		va_list my_chars;
-		va_start (my_chars, format);
 
-	while (format[x] != '\0')
-	{
-		if (format[x] != '%')
+		if (format[x] != '\0' && format[x] != '%')
 		{
-			write(1, format, strlen(format));
 			x++;
+			write (1, format, strlen(format));
 		}
 
-		while (format[i] == '%')
+		if (format[x] != '\0' && format[x] == '%')
 		{
-			if (format[i + 1] == 'c')
+			if (format[x + 1] == 'c')
 			{
 				int value = va_arg (my_chars, int);
 				write (1, &value, 1);
 			}
 
-			else if (format[i + 1] == 's')
+			else if (format[x + 1] == 's')
 			{
-				while (format[i + 1] != '\0')
-				{
+				int val = va_arg (my_chars, int);
 
-					int val =  va_arg (my_chars, int);
+				while (format[x + 1] != '\0')
+				{
 					write (1, &val, strlen(format));
-					i++;
+					x++;
 				}
 			}
 
@@ -46,17 +45,10 @@ int _printf(const char *format, ...)
 				int val2 = va_arg (my_chars, int);
 				write (1, &val2, 1);
 			}
-
-			i++;
 		}
-
-
-		x++;
 	}
 
-		va_end (my_chars);
-
-	}
+	va_end (my_chars);
 
 	return (0);
 }
