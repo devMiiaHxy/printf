@@ -1,11 +1,12 @@
 #include "main.h"
+#include <stdarg.h>
 
 
 int _printf(const char *format, ...)
 {
 	int x = 0;
 	va_list my_chars;
-	va_start (my_chars, format);
+	va_start(my_chars, format);
 
 	if (format == NULL)
 	{
@@ -21,20 +22,30 @@ int _printf(const char *format, ...)
 			x++;
 		}
 
+		 for (x = 0; format[x] != '\0'; x++)
+		{
+
 		if (format[x] == '%')
 		{
-			if (format[x + 1] == 'c')
+			x++;
+
+			if (format[x] == 'c')
 			{
-				int value = va_arg (my_chars, int);
+				char value = va_arg(my_chars, int);
+				char line = '\n';
 				write (1, &value, 1);
+				write (1, &line, 1);
+				
 			}
 
-			else if (format[x + 1] == 's')
+			else if (format[x] == 's')
 			{
-				int val = va_arg (my_chars, int);
+				char lin = '\n';
+				write (1, &lin, 1);
 
-				while (format[x + 1] != '\0')
+				while (format[x] != '\0')
 				{
+					char val = va_arg(my_chars, int);
 					write (1, &val, strlen(format));
 					x++;
 				}
@@ -42,10 +53,12 @@ int _printf(const char *format, ...)
 
 			else
 			{
-				int val2 = va_arg (my_chars, int);
+				char val2 = '%';
 				write (1, &val2, 1);
 			}
 		
+		}
+
 		}
 
 	}
