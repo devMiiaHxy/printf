@@ -3,6 +3,8 @@
 /*
  * _printf - function to print out
  * @format : parameter given
+ * va_list - variadic manager list
+ *
  * Return: 0 (success)
  */
 
@@ -10,6 +12,7 @@ int _printf (const char *format, ...)
 {
 
 	int x = 0;
+	int b = 0;
 
 	va_list my_chars;
 	va_start (my_chars, format);
@@ -44,6 +47,18 @@ int _printf (const char *format, ...)
 			write(1, &call, strlen(format));
 		}
 
+		else if (format[x + 1] == 'd')
+		{
+			int numba = va_arg(my_chars, int);
+			write(1, &numba, b);
+
+			while (b < format[x])
+			{
+				b++;
+			}
+
+		}
+
 		else
 		{
 			char nex = va_arg(my_chars, int);
@@ -53,4 +68,5 @@ int _printf (const char *format, ...)
 	}
 
 	return (0);
+	return ('\n');
 }
