@@ -5,6 +5,11 @@
  * @format : parameter given
  * @... : variadic parameter
  * write : alias to printf
+ * va_list: Macro
+ * va_start: macro
+ * va_copy: macro
+ * va_arg: macro
+ * va_end: macro
  * Description: Printf
  * Return: 0 (success)
  */
