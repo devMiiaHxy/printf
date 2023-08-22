@@ -9,15 +9,19 @@
  * Return: 0 (success)
  */
 
-int _printf (const char *format, ...)
+int _printf(const char *format, ...)
 {
 	unsigned int x;
- 	unsigned int track = 0;
+	unsigned int track = 0;
 	unsigned int str_track = 0;
 	unsigned int j;
 
 	va_list my_chars;
-	va_start (my_chars, format);
+
+	va_start(my_chars, format);
+
+	if (format == NULL)
+		return (-1);
 
 	for (x = 0; format[x] != '\0'; x++)
 	{
@@ -25,22 +29,18 @@ int _printf (const char *format, ...)
 		{
 			sout(format[x]);
 		}
-
 		if (format[x] == '%' && format[x + 1] == 'c')
 		{
 			sout(va_arg(my_chars, int));
 			x++;
 		}
-
 		if (format[x] == '%' && format[x + 1] == 's')
 		{
 			str_track = str_out(va_arg(my_chars, char *));
 			x++;
-
 			for (j = 1; j < str_track; j++)
 				j += track;
 		}
-
 		if (format[x] == '%' && format[x + 1] == '%')
 		{
 			sout('%');
@@ -50,6 +50,6 @@ int _printf (const char *format, ...)
 	}
 
 	va_end(my_chars);
-	return (track);
 
+	return (track);
 }
