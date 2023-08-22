@@ -10,15 +10,15 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int x;
-	unsigned int track = 0;
-	unsigned int str_track = 0;
-	unsigned int j;
+	unsigned int x , j;
+	unsigned int track = 0, str_track = 0;
 
 	va_list my_chars;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
+	{
 		return (-1);
+	}
 
 	va_start(my_chars, format);
 
@@ -44,11 +44,8 @@ int _printf(const char *format, ...)
 		{
 			sout('%');
 		}
-
 		track++;
 	}
-
 	va_end(my_chars);
-
 	return (track);
 }
