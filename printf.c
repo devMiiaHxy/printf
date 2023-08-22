@@ -18,10 +18,10 @@ int _printf(const char *format, ...)
 
 	va_list my_chars;
 
-	va_start(my_chars, format);
-
 	if (format == NULL)
 		return (-1);
+
+	va_start(my_chars, format);
 
 	for (x = 0; format[x] != '\0'; x++)
 	{
