@@ -13,6 +13,8 @@ int _printf (const char *format, ...)
 {
 	unsigned int x;
  	unsigned int track = 0;
+	unsigned int str_track = 0;
+	unsigned int j;
 
 	va_list my_chars;
 	va_start (my_chars, format);
@@ -30,9 +32,24 @@ int _printf (const char *format, ...)
 			x++;
 		}
 
+		if (format[x] == '%' && format[x + 1] == 's')
+		{
+			str_track = str_out(va_arg(my_chars, char *));
+			x++;
+
+			for (j = 1; j < str_track; j++)
+				j += track;
+		}
+
+		if (format[x] == '%' && format[x + 1] == '%')
+		{
+			sout('%');
+		}
+
 		track++;
 	}
 
+	va_end(my_chars);
 	return (track);
 
 }
