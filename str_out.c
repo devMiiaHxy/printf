@@ -3,7 +3,8 @@
 /**
  * str_out - outputs type str
  * @s: parameter
- * Return: amount of malloc
+ *
+ * Return: tracker value
  */
 
 int str_out(char *s)
