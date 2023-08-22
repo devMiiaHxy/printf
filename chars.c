@@ -3,8 +3,9 @@
 /*
  * _printf - function to print out
  * @format : parameter given
- * va_list - variadic manager list
- *
+ * va_list : variadic manager list
+ * ... : variadic parameter
+ * Description: Printf
  * Return: 0 (success)
  */
 
