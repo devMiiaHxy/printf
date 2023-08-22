@@ -1,11 +1,10 @@
 #include "main.h"
 
-/*
+/**
  * _printf - function to print out
- * @format : parameter given
- * @... : variadic parameter
- * write : alias to printf
- * Description: Printf
+ * @format: parameter given
+ * @...: variadic parameter
+ *
  * Return: 0 (success)
  */
 
