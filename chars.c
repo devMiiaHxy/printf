@@ -1,69 +1,56 @@
 #include "main.h"
-#include <stdarg.h>
 
+/*
+ * _printf - function to print out
+ * @format : parameter given
+ * Return: 0 (success)
+ */
 
-int _printf(const char *format, ...)
+int _printf (const char *format, ...)
 {
+
 	int x = 0;
+
 	va_list my_chars;
-	va_start(my_chars, format);
+	va_start (my_chars, format);
 
 	if (format == NULL)
 	{
-		int cal = va_arg (my_chars, int);
-		write(-1, &cal, 0);
+		return (-1);
 	}
 
-	else
+	while(format[x] != '%' || format[x] != '\0')
 	{
-		if (format[x] != '%')
+		return (format[x]);
+		x++;
+	}
+
+	if (format[x] != '%')
+	{
+		x++;
+	}
+
+	while (format[x] ==  '%' || format[x] != '\0')
+	{
+		if (format[x + 1] == 'c')
 		{
-			write (1, format, strlen(format));
-			x++;
+			char letter = va_arg(my_chars, int);
+			write(1, &letter, 1);
 		}
 
-		 for (x = 0; format[x] != '\0'; x++)
+		else if (format[x + 1] == 's')
 		{
-
-		if (format[x] == '%')
-		{
-			x++;
-
-			if (format[x] == 'c')
-			{
-				char value = va_arg(my_chars, int);
-				char line = '\n';
-				write (1, &value, 1);
-				write (1, &line, 1);
-				
-			}
-
-			else if (format[x] == 's')
-			{
-				char lin = '\n';
-				write (1, &lin, 1);
-
-				while (format[x] != '\0')
-				{
-					char val = va_arg(my_chars, int);
-					write (1, &val, strlen(format));
-					x++;
-				}
-			}
-
-			else
-			{
-				char val2 = '%';
-				write (1, &val2, 1);
-			}
-		
+			char* call = va_arg(my_chars, char*);
+			write(1, &call, strlen(format));
 		}
 
+		else
+		{
+			char nex = va_arg(my_chars, int);
+			write(1, &nex, strlen(format));
 		}
 
 	}
-
-	va_end (my_chars);
 
 	return (0);
 }
