@@ -16,9 +16,7 @@ int _printf(const char *format, ...)
 	va_list my_chars;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
-	{
 		return (-1);
-	}
 
 	va_start(my_chars, format);
 
