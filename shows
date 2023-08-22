@@ -1,0 +1,22 @@
+#include "main.h"
+#include <stdarg.h>
+
+int _printf (const char *format, ...)
+{
+	va_list calls;
+	va_start (calls, format);
+	/* int x = 0; */
+
+	while (format != '\0')
+	{
+		if ( *format == 's')
+			{
+				char* str = va_arg (calls, char *);
+				write (1, &str, strlen(str));
+
+			}
+	}
+
+	va_end (calls);
+	return (0);
+}
