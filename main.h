@@ -8,5 +8,7 @@
 
 int _printf(const char *format, ...);
 int sout(char c);
+int str_out(char *s);
+
 
 #endif
